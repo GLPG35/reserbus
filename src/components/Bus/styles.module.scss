@@ -1,0 +1,11 @@
+.bus {
+	width: 30em;
+	height: max-content;
+	translate: 0 5vh;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+}

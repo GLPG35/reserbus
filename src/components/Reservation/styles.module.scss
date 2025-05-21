@@ -1,0 +1,427 @@
+.reservation {
+	width: max-content;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+
+	.steps {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.step {
+			display: flex;
+			align-items: center;
+			gap: 0.5em;
+			transition: 0.2s ease-out;
+			cursor: pointer;
+			padding: 1em;
+
+			&.active {
+				color: var(--ac-color);
+			}
+
+			&.disabled {
+				pointer-events: none;
+				opacity: 0.5;
+			}
+
+			&:hover {
+				color: var(--ac-color);
+			}
+
+			.icon {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+
+		.separator {
+			width: 2em;
+			height: 2px;
+			background-color: var(--fg-color);
+			transition: 0.2s ease-out;
+			position: relative;
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				scale: 0%;
+				transition: 0.2s ease-out;
+				background-color: var(--ac-color);
+				transform-origin: left;
+			}
+
+			&.disabled {
+				opacity: 0.5;
+			}
+
+			&.active {
+				&::before {
+					scale: 100%;
+				}
+			}
+		}
+	}
+}
+
+form {
+	width: 32em;
+	flex: 1;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
+
+	&::-webkit-scrollbar {
+		width: 35px;
+
+		&-thumb {
+			background-color: var(--ac-color);
+			border-radius: 50vh;
+			border: 15px solid rgba(0, 0, 0, 0);
+			background-clip: padding-box;
+		}
+	}
+
+	.group {
+		display: flex;
+		gap: 1em;
+
+		button {
+			width: 100%;
+			padding: 1em 1.5em;
+			font-weight: 600;
+			background-color: var(--ac-color);
+			border: 3px solid var(--ac-color);
+			border-radius: 15px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 1em;
+			cursor: pointer;
+			position: relative;
+
+			&:disabled {
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
+
+			.icon {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.4em;
+				height: 0.5em;
+			}
+		}
+
+		.message {
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+			opacity: 0.5;
+
+			p {
+				display: flex;
+			}
+		}
+	}
+
+	fieldset {
+		border: none;
+		outline: none;
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+		flex: 1;
+		min-width: 0;
+
+		label {
+			font-size: 1.2em;
+		}
+
+		input {
+			padding: 1em 1.5em;
+			border: 3px solid var(--ac-color);
+			border-radius: 15px;
+			font-weight: 600;
+
+			&:disabled {
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
+		}
+
+		.select {
+			display: flex;
+			align-items: center;
+			position: relative;
+			width: 100%;
+			
+			select {
+				padding: 1em 1.5em;
+				padding-right: 2.5em;
+				border: 3px solid var(--ac-color);
+				border-radius: 15px;
+				font-weight: 600;
+				background-color: var(--ac-color);
+				cursor: pointer;
+				appearance: none;
+				width: 100%;
+				transition: 0.2s ease-out;
+
+				&:disabled {
+					opacity: 0.5;
+					cursor: not-allowed;
+
+					+ .icon {
+						opacity: 0.5;
+					}
+				}
+
+				option {
+					font-weight: 600;
+				}
+			}
+
+			.icon {
+				position: absolute;
+				right: 1em;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+
+		.multiSelect {
+			max-width: 100%;
+			display: flex;
+			flex-direction: column;
+			border: 3px solid var(--ac-color);
+			border-radius: 20px;
+			padding: 1em;
+			gap: 1em;
+
+			.stopsList {
+				max-width: 100%;
+				height: max-content;
+				display: flex;
+				gap: 1em;
+				overflow-x: auto;
+				overflow-y: hidden;
+				white-space: nowrap;
+
+				&::-webkit-scrollbar {
+					height: 20px;
+
+					&-thumb {
+						background-color: var(--ac-color);
+						border-top: 15px solid transparent;
+						background-clip: padding-box;
+					}
+				}
+
+				.stop {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					padding: 0.5em 1em;
+					gap: 0.5em;
+					background-color: var(--ac-color);
+					border-radius: 15px;
+					cursor: pointer;
+
+					.icon {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						font-size: 0.9em;
+					}
+				}
+			}
+
+			.empty {
+				padding: 0.5em 1em;
+			}
+
+			.select {
+				display: flex;
+				align-items: center;
+				position: relative;
+				width: 100%;
+
+				select {
+					padding: 1em 1.5em;
+					padding-right: 2.5em;
+					border-radius: 15px;
+					font-weight: 600;
+					border: none;
+					cursor: pointer;
+					appearance: none;
+					width: 100%;
+					transition: 0.2s ease-out;
+
+					&:disabled {
+						opacity: 0.5;
+						cursor: not-allowed;
+
+						+ .icon {
+							opacity: 0.5;
+						}
+					}
+
+					option {
+						font-weight: 600;
+						background-color: var(--ac-color);
+					}
+				}
+
+				.icon {
+					position: absolute;
+					right: 1em;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+			}
+		}
+
+		span {
+			font-size: 1.2em;
+		}
+
+		.fieldGroup {
+			display: flex;
+			gap: 1em;
+			
+			fieldset {
+				width: 100%;
+				
+				input[type="radio"] {
+					display: none;
+				}
+
+				label {
+					font-size: initial;
+					padding: 1em 1.5em;
+					border: 3px solid var(--ac-color);
+					border-radius: 15px;
+					cursor: pointer;
+					transition: 0.2s ease-out;
+					flex: 1;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					white-space: nowrap;
+					user-select: none;
+
+					&.active {
+						background-color: var(--ac-color);
+					}
+				}
+			}
+		}
+
+		.summary {
+			width: 100%;
+			height: max-content;
+			display: flex;
+			flex-direction: column;
+			gap: 2em;
+
+			.trayectory {
+				width: 100%;
+				display: flex;
+				gap: 0.5em;
+				flex-direction: column;
+
+				.path {
+					width: 100%;
+					display: flex;
+					gap: 1em;
+
+					.origin, .destination {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						font-size: 1.5em;
+					}
+
+					.road {
+						flex: 1;
+						border-top: 3px dashed var(--ac-color);
+						translate: 0 50%;
+					}
+				}
+				.originDestination {
+					width: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+				}
+			}
+
+			.stops {
+				.stopList {
+					width: 100%;
+					display: flex;
+					flex-direction: column;
+					gap: 0.5em;
+
+					.title {
+						font-weight: 700;
+						display: flex;
+						align-items: center;
+						gap: 0.5em;
+
+						.icon {
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							font-size: 1.2em;
+							translate: 0 -10%;
+						}
+					}
+
+					.list {
+						display: flex;
+						gap: 0.5em;
+					}
+				}
+				
+				.noStops {
+					opacity: 0.5;
+					font-style: italic;
+				}
+			}
+
+			.element {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5em;
+
+				.title {
+					font-weight: 700;
+					display: flex;
+					align-items: center;
+					gap: 0.5em;
+
+					.icon {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						font-size: 1.2em;
+					}
+				}
+			}
+		}
+	}
+}

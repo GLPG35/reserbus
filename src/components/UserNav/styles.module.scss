@@ -1,0 +1,48 @@
+.user {
+	position: relative;
+	
+	.profilePic {
+		width: 2.5em;
+		height: 2.5em;
+		background-color: var(--ac-color);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 10px;
+		color: var(--fg-color);
+		cursor: pointer;
+		user-select: none;
+		outline: none;
+	}
+
+	.options {
+		position: absolute;
+		top: 3.5em;
+		right: 0;
+		background-color: var(--bg-color);
+		border: 3px solid var(--ac-color);
+		border-radius: 15px;
+		overflow: hidden;
+		z-index: 10;
+
+		.option {
+			padding: 1em;
+			display: flex;
+			align-items: center;
+			gap: 0.5em;
+			cursor: pointer;
+			transition: 0.2s ease-out;
+
+			&:hover {
+				background-color: var(--ac-color);
+			}
+			
+			.icon {
+				font-size: 1.3em;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+	}
+}
