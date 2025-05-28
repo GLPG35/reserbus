@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useUserStore } from '../../store/user'
 import styles from './styles.module.scss'
 import User from '../../utils/user'
-import { PiSignOutBold, PiTicketBold } from 'react-icons/pi'
+import { PiSignOutBold, PiTicketBold, PiUserGearBold } from 'react-icons/pi'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocation } from 'wouter'
 
@@ -43,6 +43,11 @@ const UserNav = () => {
 		}
 	]
 
+	const handleDashboard = () =>  {
+		setActive(false)
+		navigate('/dashboard')
+	}
+
 	if (!user) return
 	
 	return (
@@ -55,6 +60,14 @@ const UserNav = () => {
 			<AnimatePresence>
 				{active &&
 					<motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} className={styles.options} ref={profileRef}>
+						{user.role == 'admin' &&
+							<div className={styles.option} key={'Dashboard'} onClick={handleDashboard}>
+								<div className={styles.icon}>
+									<PiUserGearBold />
+								</div>
+								Dashboard
+							</div>
+						}
 						{options.map(({ icon, name, link, action }) => {
 							const handleClick = () => {
 								if (action) {

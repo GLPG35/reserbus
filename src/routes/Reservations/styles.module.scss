@@ -88,6 +88,10 @@
 						font-size: 0.9em;
 						opacity: 0.5;
 
+						&:has(span.capitalize) {
+							opacity: 1;
+						}
+
 						span {
 							display: flex;
 							gap: 0.5em;
@@ -120,6 +124,75 @@
 					height: 100%;
 					object-fit: cover;
 					object-position: right center;
+				}
+			}
+		}
+	}
+
+	.empty {
+		display: flex;
+		padding: 2em;
+		align-items: center;
+		gap: 2em;
+		flex: 1;
+
+		.randomBus {
+			height: 80%;
+			flex: 1;
+			translate: -4em;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center right;
+			}
+		}
+
+		.message {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			gap: 2em;
+			text-align: right;
+			align-items: flex-end;
+
+			.title {
+				font-size: 5em;
+				font-weight: 700;
+				text-wrap: balance;
+			}
+
+			.text {
+				font-size: 1.5em;
+			}
+
+			button {
+				width: 20em;
+				padding: 1em 1.5em;
+				font-weight: 600;
+				background-color: var(--ac-color);
+				border: 3px solid var(--ac-color);
+				border-radius: 15px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 1em;
+				cursor: pointer;
+				position: relative;
+				margin-top: 1em;
+	
+				&:disabled {
+					opacity: 0.5;
+					cursor: not-allowed;
+				}
+	
+				.icon {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 1.4em;
+					height: 0.5em;
 				}
 			}
 		}

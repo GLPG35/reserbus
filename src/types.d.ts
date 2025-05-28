@@ -3,7 +3,8 @@ type User = {
 	ci: string
 	name: string,
 	lastname: string,
-	email: string
+	email: string,
+	role: 'user'|'admin'
 }
 
 type NewUser = {
@@ -45,4 +46,24 @@ type GetReservation = {
 	destination: string,
 	duration: null|number,
 	stops?: { id: string, name: string }[]
+}
+
+type ConfirmReservation = {
+	duration: number,
+	vehicleId: string,
+	amount: nunmber
+}
+
+type GetVehicle = {
+	id: string,
+	type: 'bus'|'minibus'|'microbus',
+	capacity: number,
+	availableTime: string,
+	createdAt: string
+}
+
+type AddVehicle = {
+	type: 'bus'|'minibus'|'microbus',
+	capacity: number,
+	availableTime: string
 }

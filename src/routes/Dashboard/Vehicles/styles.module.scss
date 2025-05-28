@@ -1,0 +1,174 @@
+.vehicles {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5em;
+
+	.title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		button {
+			padding-inline: 1em;
+			border: 3px solid var(--ac-color);
+			height: 2.5em;
+			border-radius: 10px;
+			cursor: pointer;
+			transition: 0.2s ease-out;
+
+			&:hover {
+				background-color: var(--ac-color);
+			}
+		}
+	}
+
+	.list {
+		width: 100%;
+		flex: 1;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(23em , 1fr));
+		grid-auto-rows: max-content;
+		position: relative;
+		gap: 1.5em;
+
+		.wrapper {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 5;
+
+			form {
+				flex: initial;
+				width: 25em;
+				height: max-content;
+				display: flex;
+				flex-direction: column;
+				gap: 1.5em;
+				padding: 1.5em;
+				border: 3px solid var(--ac-color);
+				border-radius: 15px;
+				background-color: var(--bg-color);
+
+				.select {
+					display: flex;
+					align-items: center;
+					position: relative;
+					width: 100%;
+					
+					select {
+						padding: 1em 1.5em;
+						padding-right: 2.5em;
+						border: 3px solid var(--ac-color);
+						border-radius: 15px;
+						font-weight: 600;
+						background-color: var(--ac-color);
+						cursor: pointer;
+						appearance: none;
+						width: 100%;
+						transition: 0.2s ease-out;
+		
+						&:disabled {
+							opacity: 0.5;
+							cursor: not-allowed;
+		
+							+ .icon {
+								opacity: 0.5;
+							}
+						}
+		
+						option {
+							font-weight: 600;
+						}
+					}
+
+					.icon {
+						position: absolute;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						right: 1em;
+					}
+				}
+
+				button {
+					margin-top: 1em;
+					width: 100%;
+					padding: 1em 1.5em;
+					font-weight: 600;
+					background-color: var(--ac-color);
+					border: 3px solid var(--ac-color);
+					border-radius: 15px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					gap: 1em;
+					cursor: pointer;
+					position: relative;
+		
+					&:disabled {
+						opacity: 0.5;
+						cursor: not-allowed;
+					}
+		
+					.icon {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						font-size: 1.4em;
+						height: 0.5em;
+					}
+				}
+			}
+		}
+
+		.vehicle {
+			width: 100%;
+			height: max-content;
+			display: flex;
+			gap: 1em;
+			padding: 1.5em;
+			border: 3px solid var(--ac-color);
+			border-radius: 15px;
+			justify-content: space-between;
+			align-items: center;
+
+			.titleInfo {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5em;
+
+				.type {
+					font-size: 1.5em;
+					font-weight: 700;
+				}
+			}
+
+			.capacity, .time {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+			}
+
+			.vehicleImg {
+				max-width: 7em;
+				height: 7em;
+				translate: 1.5em;
+
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					object-position: right;
+					transform: scaleX(-1);
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,462 @@
+.reservations {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5em;
+
+	.title {
+		display: flex;
+		justify-content: space-between;
+
+		h2 {
+			display: flex;
+			align-items: center;
+			gap: 0.5em;
+
+			.icon {
+				display: flex;
+				align-items: center;
+			}
+		}
+
+		.controls {
+			display: flex;
+			gap: 1em;
+
+			.button {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+
+				&.active {
+					.wrapper {
+						background-color: var(--ac-color);
+					}
+				}
+
+				.wrapper {
+					width: 2.5em;
+					height: 2.5em;
+					border-radius: 10px;
+					transition: 0.2s ease-out;
+					cursor: pointer;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					border: 3px solid var(--ac-color);
+
+					&:hover {
+						background-color: var(--ac-color);
+					}
+
+					.icon {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+					}
+				}
+
+				.wrapper2 {
+					width: max-content;
+					height: 2.5em;
+					border-radius: 10px;
+					transition: 0.2s ease-out;
+					cursor: pointer;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					border: 3px solid var(--ac-color);
+					padding-inline: 1em;
+
+					&:hover {
+						background-color: var(--ac-color);
+					}
+				}
+
+				.modal {
+					position: absolute;
+					border: 3px solid var(--ac-color);
+					border-radius: 15px;
+					top: 3.5em;
+					right: 0;
+					overflow: hidden;
+					z-index: 10;
+					
+					.option {
+						padding: 1em;
+						display: flex;
+						gap: 0.5em;
+						align-items: center;
+						transition: 0.2s ease-out;
+						cursor: pointer;
+
+						&:hover {
+							background-color: var(--ac-color);
+						}
+
+						.icon {
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							font-size: 1.1em;
+						}
+						
+						&.capitalized {
+							text-transform: capitalize;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.list {
+		flex: 1;
+		overflow-y: auto;
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+		grid-auto-rows: max-content;
+		position: relative;
+		gap: 1.5em;
+
+		&.deleting {
+			.reservation .delete {
+				opacity: 1;
+			}
+		}
+
+		.edit {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 5;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			
+			.wrapper {
+				display: flex;
+				gap: 1.5em;
+			}
+			
+			.reservationModal {
+				width: 25em;
+				height: max-content;
+				border: 3px solid var(--ac-color);
+				border-radius: 15px;
+				padding: 1.5em;
+				display: flex;
+				flex-direction: column;
+				gap: 1em;
+				position: relative;
+				background-color: var(--bg-color);
+				transition: 0.2s cubic-bezier(0.65,0.05,0.36,1);
+				user-select: none;
+
+				.reservationTitle {
+					display: flex;
+					flex-direction: column;
+	
+					.id {
+						font-weight: 700;
+						font-size: 1.5em;
+					}
+	
+					.createdAt {
+						opacity: 0.5;
+						font-size: 0.9em;
+					}
+				}
+
+				.trip {
+					display: flex;
+					flex-direction: column;
+
+					.route {
+						display: flex;
+						gap: 0.5em;
+						align-items: center;
+
+						.icon {
+							font-size: 1.4em;
+						}
+
+						.path {
+							flex: 1;
+							border-top: 3px dashed var(--ac-color);
+						}
+					}
+
+					.originDestination {
+						display: flex;
+						justify-content: space-between;
+					}
+				}
+
+				.data {
+					display: flex;
+					flex-direction: column;
+					margin-top: 1em;
+					gap: 1em;
+
+					.element {
+						display: flex;
+						flex-direction: column;
+						gap: 0.5em;
+
+						.elementTitle {
+							display: flex;
+							gap: 0.5em;
+							font-weight: 700;
+
+							.icon {
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								font-size: 1.1em;
+							}
+						}
+					}
+				}
+			}
+
+			form {
+				width: 25em;
+				height: max-content;
+				flex: initial;
+				border: 3px solid var(--ac-color);
+				border-radius: 15px;
+				padding: 1.5em;
+				display: flex;
+				flex-direction: column;
+				gap: 1em;
+				background-color: var(--bg-color);
+
+				fieldset {
+					display: flex;
+					flex-direction: column;
+					gap: 1em;
+
+					label {
+						font-weight: 600;
+					}
+
+					.input {
+						display: flex;
+						gap: 0.5em;
+						align-items: center;
+
+						input {
+							flex: 1;
+						}
+					}
+
+					.input2 {
+						display: flex;
+						align-items: center;
+						position: relative;
+
+						span {
+							position: absolute;
+							left: 1em;
+						}
+
+						input {
+							padding-left: 2em;
+							width: 100%;
+						}
+					}
+
+					.select {
+						display: flex;
+						align-items: center;
+						position: relative;
+						width: 100%;
+						
+						select {
+							padding: 1em 1.5em;
+							padding-right: 2.5em;
+							border: 3px solid var(--ac-color);
+							border-radius: 15px;
+							font-weight: 600;
+							background-color: var(--ac-color);
+							cursor: pointer;
+							appearance: none;
+							width: 100%;
+							transition: 0.2s ease-out;
+			
+							&:disabled {
+								opacity: 0.5;
+								cursor: not-allowed;
+			
+								+ .icon {
+									opacity: 0.5;
+								}
+							}
+			
+							option {
+								font-weight: 600;
+							}
+						}
+			
+						.icon {
+							position: absolute;
+							right: 1em;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+						}
+					}
+				}
+
+				button {
+					margin-top: 1em;
+					width: 100%;
+					padding: 1em 1.5em;
+					font-weight: 600;
+					background-color: var(--ac-color);
+					border: 3px solid var(--ac-color);
+					border-radius: 15px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					gap: 1em;
+					cursor: pointer;
+					position: relative;
+		
+					&:disabled {
+						opacity: 0.5;
+						cursor: not-allowed;
+					}
+		
+					.icon {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						font-size: 1.4em;
+						height: 0.5em;
+					}
+				}
+			}
+		}
+
+		.reservation {
+			width: 100%;
+			height: max-content;
+			border: 3px solid var(--ac-color);
+			border-radius: 15px;
+			padding: 1.5em;
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+			cursor: pointer;
+			position: relative;
+			background-color: var(--bg-color);
+			transition: 0.2s cubic-bezier(0.65,0.05,0.36,1);
+			user-select: none;
+
+			&.deleting {
+				.delete {
+					background-color: var(--ac-color);
+				}
+			}
+			
+			.delete {
+				position: absolute;
+				top: 1.5em;
+				right: 1.5em;
+				width: 1.5em;
+				height: 1.5em;
+				border: 3px solid var(--ac-color);
+				border-radius: 5px;
+				opacity: 0;
+				transition: 0.2s ease-out;
+			}
+
+			&::before {
+				z-index: -1;
+				content: '';
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				border: 3px solid var(--ac-color);
+				background-color: var(--ac-color);
+				position: absolute;
+				border-radius: 15px;
+				opacity: 0;
+				transition: 0.2s cubic-bezier(0.65,0.05,0.36,1);
+			}
+
+			&:hover {
+				&::before {
+					opacity: 1;
+					translate: 1em 1em;
+				}
+			}
+			
+			&:active {
+				&::before {
+					opacity: 1;
+					translate: 0.5em 0.5em;
+					transition: 0.1s cubic-bezier(0.65,0.05,0.36,1);
+				}
+			}
+
+			.reservationTitle {
+				display: flex;
+				flex-direction: column;
+
+				.id {
+					font-weight: 700;
+					font-size: 1.5em;
+				}
+
+				.createdAt {
+					opacity: 0.5;
+					font-size: 0.9em;
+				}
+			}
+
+			.data {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5em;
+				
+				.daysUntil {
+					font-size: 1.1em;
+				}
+
+				.status {
+					font-size: 0.9em;
+					opacity: 0.5;
+
+					&:has(span.capitalize) {
+						opacity: 1;
+					}
+
+					span {
+						display: flex;
+						gap: 0.5em;
+						align-items: center;
+
+						&.capitalize {
+							text-transform: capitalize;
+						}
+
+						.icon {
+							display: flex;
+							align-items: center;
+							justify-content: center;
+						}
+					}
+				}
+			}
+		}
+	}
+}

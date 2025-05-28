@@ -17,10 +17,6 @@ const Home = () => {
 	const [, navigate] = useLocation()
 
 	useEffect(() => {
-		if (!reservation) Api.getReservation('01968d01-225e-7000-815e-58213e819e2f').then(setReservation)
-	}, [])
-
-	useEffect(() => {
 		if (reset) setFinish(false)
 	}, [reset])
 
@@ -78,9 +74,9 @@ const Home = () => {
 						</div>
 						<div className={styles.summary}>
 							<div className={styles.title}>
-								<h2>Resumen de la reserva</h2>
+								<h2>Reserva #{reservation.id.split('-')[0]}</h2>
 								<div className={styles.id}>
-									#{reservation.id.replace(/-/g, '')} • {Intl.DateTimeFormat('es-UY', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date(reservation.createdAt.replace(/ /g, 'T')))}
+									{Intl.DateTimeFormat('es-UY', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date(reservation.createdAt.replace(/ /g, 'T')))}
 								</div>
 							</div>
 							<div className={styles.info}>

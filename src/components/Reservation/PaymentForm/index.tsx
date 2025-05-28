@@ -26,7 +26,7 @@ const PaymentForm = ({ firstBody, secondBody, nextStep }: Props) => {
 
 		const { date, origin, destination, busType, email, stops } = firstBody
 
-		const parseDate = `${date.split('T').join(' ')}:00`
+		const parseDate = `${date.replace(/T/, ' ')}:00`
 
 		if (user) {
 			const reservation: Reservation = {
@@ -56,6 +56,7 @@ const PaymentForm = ({ firstBody, secondBody, nextStep }: Props) => {
 			},
 			origin,
 			destination,
+			stops,
 			busType,
 			date: parseDate
 		}

@@ -13,7 +13,10 @@
 		height: 100%;
 		display: flex;
 		justify-content: space-evenly;
+		align-items: center;
 		z-index: 5;
+		padding-inline: 2em;
+		background-color: var(--bg-color);
 
 		.successMessage {
 			display: flex;
@@ -21,8 +24,8 @@
 			justify-content: center;
 			flex-direction: column;
 			gap: 0.8em;
-			background-color: var(--bg-color);
-			width: 35em;
+			width: 30em;
+			height: 100%;
 			
 			.iconTitle {
 				font-size: 5em;
@@ -55,13 +58,14 @@
 		}
 
 		.summary {
-			width: 35em;
-			background-color: var(--bg-color);
+			width: 30em;
 			display: flex;
 			flex-direction: column;
 			padding: 2em;
 			gap: 2em;
 			justify-content: center;
+			border: 3px solid var(--ac-color);
+			border-radius: 15px;
 
 			.title {
 				display: flex;

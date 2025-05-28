@@ -1,10 +1,11 @@
-import { useLocation } from 'wouter'
 import styles from './styles.module.scss'
 import { useUserStore } from '../../store/user'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Api from '../../utils/api'
 import Spinner from '../../components/Spinner'
-import { PiCheckBold, PiClockBold, PiXBold } from 'react-icons/pi'
+import { PiCheckBold, PiClockBold, PiHouseLineBold, PiXBold } from 'react-icons/pi'
+import { motion, AnimatePresence } from 'framer-motion'
+import { navigate } from 'wouter/use-browser-location'
 
 const units = [
 	{
@@ -47,7 +48,8 @@ const units = [
 const Reservations = () => {
 	const user = useUserStore(state => state.user)
 	const [reservations, setReservations] = useState<GetReservation[]>()
-	const [, navigate] = useLocation()
+	const random = useMemo(() => Math.floor(Math.random() * 3), [reservations])
+	const [buttonHover, setButtonHover] = useState(false)
 
 	useEffect(() => {
 		if (!reservations) Api.getReservations().then(setReservations)
@@ -56,6 +58,14 @@ const Reservations = () => {
 	useEffect(() => {
 		if (user === null) navigate('/')
 	}, [user])
+
+	const randomVehicles: ['bus', 'minibus', 'microbus'] = ['bus', 'minibus', 'microbus']
+	
+	const vehiclePaths = {
+		'bus': '/Bus.svg',
+		'minibus': '/Minibus.svg',
+		'microbus': '/Microbus.svg'
+	}
 
 	return (
 		<div className={styles.reservations}>
@@ -74,12 +84,6 @@ const Reservations = () => {
 						const findUnit = units.find(x => Math.abs(diff) < x.value) as { unit: 'second'|'minute'|'hour'|'day', value: number, division: number }
 
 						const daysUntil = new Intl.RelativeTimeFormat('es-UY', { style: 'long' }).format(Math.ceil(diff / findUnit.division), findUnit.unit)
-
-						const vehiclePaths = {
-							'bus': '/Bus.svg',
-							'minibus': '/Minibus.svg',
-							'microbus': '/Microbus.svg'
-						}
 						
 						return (
 							<div className={styles.reservation} key={parseId} onClick={() => navigate(`/reservations/${id}`)}>
@@ -132,7 +136,27 @@ const Reservations = () => {
 				</div>
 			:
 				<div className={styles.empty}>
-					<div className={styles.randomBus}></div>
+					<div className={styles.randomBus}>
+						<img src={vehiclePaths[randomVehicles[random]]} alt="" />
+					</div>
+					<div className={styles.message}>
+						<div className={styles.title}>
+							¡Aún no has hecho ninguna reserva!
+						</div>
+						<div className={styles.text}>
+							Ve a la página de inicio para reservar tu viaje
+						</div>
+						<motion.button whileTap={{ scale: 0.9 }} onMouseEnter={() => setButtonHover(true)} onMouseLeave={() => setButtonHover(false)} onClick={() => navigate('/')}>
+							<AnimatePresence initial={false} mode='popLayout'>
+								{buttonHover &&
+									<motion.div className={styles.icon} initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }}>
+										<PiHouseLineBold />
+									</motion.div>
+								}
+							</AnimatePresence>
+							<motion.span layout='position' key='form1'>Ir al inicio</motion.span>
+						</motion.button>
+					</div>
 				</div>
 			}
 		</div>

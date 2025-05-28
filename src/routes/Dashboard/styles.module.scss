@@ -1,0 +1,54 @@
+.dashboard {
+	height: calc(100dvh - 5em);
+	width: 100%;
+	padding: 2em;
+	display: flex;
+	gap: 2em;
+	align-items: center;
+	justify-content: center;
+
+	.leftBar {
+		height: 100%;
+		padding: 1em;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5em;
+		border-radius: 15px;
+		border: 3px solid var(--ac-color);
+		min-width: 15em;
+
+		.option {
+			display: flex;
+			align-items: center;
+			gap: 0.5em;
+			font-size: 1.2em;
+			text-decoration: none;
+			color: var(--fg-color);
+			border-radius: 10px;
+			padding: 0.7em 1em;
+			transition: 0.2s ease-out;
+
+			&.active {
+				background-color: var(--ac-color);
+			}
+
+			&:hover {
+				background-color: var(--ac-color);
+			}
+
+			.icon {
+				display: flex;
+				align-items: center;
+				font-size: 1.1em;
+			}
+		}
+	}
+
+	.action {
+		flex: 1;
+		height: 100%;
+		padding: 1.5em;
+		border: 3px solid var(--ac-color);
+		border-radius: 15px;
+	}
+}

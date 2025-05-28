@@ -7,6 +7,7 @@ import Home from './routes/Home'
 import Page404 from './routes/404'
 import Reservations from './routes/Reservations'
 import Reservation from './routes/Reservations/Reservation'
+import Dashboard from './routes/Dashboard'
 
 const App = () => {
 	const user = useUserStore(state => state.user)
@@ -27,6 +28,9 @@ const App = () => {
 				<Route path='/' component={Home} />
 				<Route path='/reservations' component={Reservations} />
 				<Route path='/reservations/:id' component={Reservation} />
+				<Route path='/dashboard' nest>
+					<Route path='*' component={Dashboard} />
+				</Route>
 				<Route component={Page404} />
 			</Switch>
 		</>
