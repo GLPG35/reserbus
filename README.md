@@ -11,14 +11,18 @@ Lista de requerimientos
 
 Una vez instalados los requerimientos procedermos a abrir nuestra terminal de preferencia y pegar los siguientes comandos:
 
-> git clone https://github.com/GLPG35/reserbus
-
-> cd reserbus
->
-> bun install
+```
+git clone https://github.com/GLPG35/reserbus
+```
+```
+cd reserbus
+bun install
+```
 
 Con eso quedarían todos los paquetes instalados y listos para funcionar.
 
 Ahora para ejecutar el servidor lo hacemos con:
 
-> bun dev
+```
+bun dev
+```
