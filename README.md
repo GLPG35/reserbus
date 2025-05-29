@@ -16,11 +16,9 @@ Una vez instalados los requerimientos procedermos a abrir nuestra terminal de pr
 > cd reserbus
 >
 > bun install
->
-> bun run build
 
 Con eso quedarían todos los paquetes instalados y listos para funcionar.
 
 Ahora para ejecutar el servidor lo hacemos con:
 
-> bun run preview
+> bun dev
